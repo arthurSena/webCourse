@@ -1,0 +1,100 @@
+html, body{
+	width: 100%;
+	height: 100%;
+	font-family: Arial;
+
+}
+header{
+	text-align: center;
+	background-color:#e5e5ff;
+}
+
+nav{
+	text-align: center;
+	background-color: #b3b3ff;
+	
+}
+
+nav,a{
+	padding: 1vw;
+	text-decoration: none;
+	color:black;
+}
+
+a:hover{
+	color: hotpink;
+}
+
+h6{
+	display: inline;
+	padding: 0.8vw;
+	color:#333333;
+	/*padding-bottom: 1vw;*/
+	/*margin-bottom: 2vw;*/
+}
+
+#images{
+	/*margin-top: 1vw;*/
+	background-color: #e5e5ff;
+	text-align: center;
+}
+
+.content{
+	display: inline;
+}
+
+div .main{
+	background-color: #e5e5ff;
+	
+}
+
+.content ul li{
+	padding: 0.8vw;
+}
+
+div.main{
+	background-color: #e5e5ff;
+	overflow:hidden;
+}
+
+div.left {
+	width: 33%;
+	/*padding: 0 0 0 0%;*/
+	float: left;
+		/*clear: both;*/
+
+
+}
+
+div.content {
+	width: 33%;
+	/*padding: 0 1%;*/
+	float: left;
+}
+
+div.right {
+	width: 33%;
+	/*padding: 0 1% 0 0;*/
+	float: left;
+
+}
+
+
+.calendar{
+	border: 1px solid black;
+	background-color: #bfbfbf;
+	float: left;
+}
+
+input{
+	width: 90%
+}
+
+
+footer{
+	/*text-align: left;*/
+	/*float: left;*/
+	padding: 1vw;
+	clear: both;
+	background-color: #e5e5ff;
+}
