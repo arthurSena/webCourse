@@ -4,7 +4,8 @@ var db = [
 		autores: ['Autor 1', 'Autor 2'],
 		descricao: 'Alguma descricao 1.',
 		url: 'http://livro',
-		preco: 150
+		preco: 150,
+		comentarios:['algum comentario', 'algum comentario']
 	},
 		{
 		titulo: 'Livro 2',

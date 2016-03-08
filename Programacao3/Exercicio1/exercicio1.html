@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html>
     <title>Exercicio 1</title>
-	<meta charset="utf-8">
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="js/data.js"> </script>
-	<script type="text/javascript" src="js/app.js"> </script>
+  <script type="text/javascript" src="js/app.js"> </script>
 
-	<style type="text/css">
-		h1{
-			text-align: center;
-		}
-		body{
-			background-color: #f2f2f2;
-		}
-	</style>
+  <style type="text/css">
+    h1{
+      text-align: center;
+    }
+    body{
+      background-color: #f2f2f2;
+    }
+  </style>
 
 <body ng-app="myApp">
 
-	<h1><b>Exercicio 1</b></h1>
+  <h1><b>Exercicio 1</b></h1>
 
 
 <div class="container center" ng-controller = "tableContrl">
 
-	  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Book</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="setButton(true); unLoadBook()">Add Book</button>
 
   <table class="table table-hover">
     <thead>
@@ -40,20 +40,22 @@
     </thead>
     <tbody>
        <tr ng-repeat="bk in books">
-       		<td>{{bk.titulo}}</td>
-       		<td>{{bk.autores.join(', ')}}</td>
-       		<td>{{bk.descricao}}</td>
-       		<td><a>{{bk.url}}</a></td>
-       		<td>{{bk.preco | currency}}</td>	
-       		<td>
-       			<button type="button" class="btn btn-info">Edit Book</button>
-       			<button type="button" class="btn btn-danger" ng-click="removeBook($index)">Remove Book</button>
-       		</td> 	
+          <td>{{bk.titulo}}</td>
+          <td>{{bk.autores.join(', ')}}</td>
+          <td>{{bk.descricao}}</td>
+          <td><a>{{bk.url}}</a></td>
+          <td>{{bk.preco | currency}}</td>  
+          <td>{{bk.comentarios}}</td>
+          <td>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" ng-click="setButton(false); loadBook($index)">Edit Book</button>
+            <button type="button" class="btn btn-danger" ng-click="removeBook($index)">Remove Book</button>
+             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#commentModal" ng-click="loadBook($index)">View Comments</button>
+          </td>   
        </tr>
     </tbody>
   </table>
 
-	 <!-- Modal -->
+   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
@@ -61,38 +63,39 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add Book</h4>
-          <!-- <pre>{{temp_book.titulo}}</pre> -->
+          <h4 class="modal-title" ng-show="is_add"><b>Add Book</b></h4>
+           <h4 class="modal-title"  ng-hide="is_add"><b>Edit Book</b></h4>
         </div>
         <div class="modal-body">
-           	 <div class="form-group">
-			  <label for="usr">Title</label>
-			  <input type="text" class="form-control" id="usr" ng-model="temp_book.titulo">
-			</div>
+             <div class="form-group">
+        <label for="usr">Title</label>
+        <input type="text" class="form-control" id="usr" ng-model="temp_book.titulo">
+      </div>
 
-			 <div class="form-group">
-			  <label for="usr">Author</label>
-			  <input type="text" class="form-control" id="usr" ng-model="temp_book.autor">
-			</div>
+       <div class="form-group">
+        <label for="usr">Author</label>
+        <input type="text" class="form-control" id="usr" ng-model="temp_book.autor">
+      </div>
 
-			<div class="form-group">
-			 	<label for="comment">Description:</label>
-  				<textarea class="form-control" rows="5" id="comment" ng-model="temp_book.descricao"></textarea>
-			</div>
+      <div class="form-group">
+        <label for="comment">Description:</label>
+          <textarea class="form-control" rows="5" id="comment" ng-model="temp_book.descricao"></textarea>
+      </div>
 
-			 <div class="form-group">
-			  <label for="usr">URL</label>
-			  <input type="text" class="form-control" id="usr" ng-model="temp_book.url">
-			</div>
+       <div class="form-group">
+        <label for="usr">URL</label>
+        <input type="text" class="form-control" id="usr" ng-model="temp_book.url">
+      </div>
 
-			<div class="input-group">
-			  <span class="input-group-addon">$</span>
-			  <input type="number" class="form-control" placeholder="Price" ng-model="temp_book.price">
-			</div>
+      <div class="input-group">
+        <span class="input-group-addon">$</span>
+        <input type="number" class="form-control" placeholder="Price" ng-model="temp_book.preco">
+      </div>
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="addBook()">Add</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="addBook()" ng-show="is_add">Add</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="editBook($index)" ng-hide="is_add">Edit</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         </div>
       </div>
@@ -100,7 +103,31 @@
     </div>
   </div>
 
+
+  <!-- Modal -->
+<div id="commentModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">All Comments</h4>
+        <pre>{{merda}}</pre>
+      </div>
+      <div class="modal-body">
+          <div style="border: 2px solid grey;margin-top:1%;" ng-repeat="comment in merda">
+             <p style="padding: 25px;">{{comment}}</p>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 </div>
 
 </body>
-</html>
