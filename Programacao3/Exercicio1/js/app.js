@@ -10,7 +10,16 @@ app.controller('tableContrl', function($scope) {
         preco : -1, 
         comentarios:['']
     };
-    $scope.merda = ['algum comentario', 'algum comentario'];
+
+    $scope.comentario_temp = "";
+
+    $scope.addComment = function(){
+        $scope.books = $scope.books.filter(function(el) {
+            return el.titulo != $scope.temp_book.titulo;
+        });
+        $scope.temp_book.comentarios.push($scope.comentario_temp);
+        $scope.books.splice(0,0,$scope.temp_book);
+    }
 
     $scope.removeBook = function(index_book){
         $scope.books.splice(index_book, 1);
@@ -22,7 +31,6 @@ app.controller('tableContrl', function($scope) {
 
     $scope.loadBook = function(index_book){
         $scope.temp_book = $scope.books[index_book];
-        $scope.merda = $scope.temp_book.comentarios
     }
 
     $scope.unLoadBook = function(){
